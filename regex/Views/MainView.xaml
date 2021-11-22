@@ -40,9 +40,14 @@
                     <TextBlock Text="Texte à tester :" />
                     <TextBox Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}" Width="200" />
                 </WrapPanel>
-                <Button Content="Test" Width="150"
-                    Command="{Binding TestRegexCommand}"
-                    CommandParameter="{Binding ElementName=txtPattern, Path=Text}" />
+                <WrapPanel>
+                    <Button Content="Test" Width="150"
+                        Command="{Binding TestRegexCommand}"
+                        CommandParameter="{Binding ElementName=txtPattern, Path=Text}" />
+                    <Button Content="Extraire" Width="150"
+                        Command="{Binding ExtractRegexCommand}"
+                        CommandParameter="{Binding ElementName=txtPattern, Path=Text}" />
+                </WrapPanel>
                 <WrapPanel>
                     <TextBlock Text="Result : "/>
                     <TextBox Text="{Binding TestResult}" Width="200" />

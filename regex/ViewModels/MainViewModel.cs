@@ -44,15 +44,17 @@ namespace regex.ViewModels
 
 
         public DelegateCommand<string> TestRegexCommand { get; set; }
+        public DelegateCommand<string> ExtractRegexCommand { get; set; }
 
-        
         public MainViewModel()
         {
             TestRegexCommand = new DelegateCommand<string>(TestRegEx);
+            ExtractRegexCommand = new DelegateCommand<string>(TestRegExExtract);
         }
 
         private void TestRegEx(string obj)
         {
+            
             var regexp = new Regex(Pattern);
             regexp.Match(TestText);
 
@@ -62,6 +64,19 @@ namespace regex.ViewModels
             } else
             {
                 TestResult = "Nope!";
+            }
+        }
+
+        private void TestRegExExtract(string obj)
+        {
+            TestResult = "";
+            var regexp = new Regex(Pattern);
+
+            var matches = regexp.Matches(TestText);
+
+            foreach (var match in matches)
+            {
+                TestResult += match.ToString() + "\r\n";
             }
         }
     }
