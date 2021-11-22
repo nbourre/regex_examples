@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
-        xmlns:local="clr-namespace:regex"
+        xmlns:local="clr-namespace:regex" 
+        xmlns:viewmodels="clr-namespace:regex.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
@@ -29,11 +31,23 @@
             </StatusBarItem>
         </StatusBar>
         <Grid>
-            <WrapPanel>
-                <TextBlock Text="Code Postal :" />
-                <TextBox >
-                </TextBox>
-            </WrapPanel>
+            <StackPanel>
+                <WrapPanel>
+                    <TextBlock Text="Pattern :" />
+                    <TextBox x:Name="txtPattern" Text="{Binding Pattern, UpdateSourceTrigger=PropertyChanged}" Width="200" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Texte à tester :" />
+                    <TextBox Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}" Width="200" />
+                </WrapPanel>
+                <Button Content="Test" Width="150"
+                    Command="{Binding TestRegexCommand}"
+                    CommandParameter="{Binding ElementName=txtPattern, Path=Text}" />
+                <WrapPanel>
+                    <TextBlock Text="Result : "/>
+                    <TextBox Text="{Binding TestResult}" Width="200" />
+                </WrapPanel>
+            </StackPanel>
         </Grid>
     </DockPanel>
 </Window>
