@@ -1,8 +1,4 @@
 ﻿using regex.Commands;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace regex.ViewModels
@@ -73,7 +69,7 @@ namespace regex.ViewModels
             var regexp = new Regex(Pattern);
 
             var matches = regexp.Matches(TestText);
-
+            
             foreach (var match in matches)
             {
                 TestResult += match.ToString() + "\r\n";
